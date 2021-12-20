@@ -14,7 +14,7 @@ const Main = styled.div`
 function Layout(props: any) {
   return (
     <Wrapper>
-      <Main>{props.children}</Main>
+      <Main className={props.className}>{props.children}</Main>
       {props.navVisible !== "false" ? <Nav /> : ""}
     </Wrapper>
   );
