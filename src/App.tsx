@@ -4,8 +4,10 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-
-import Layout from "components/Layout";
+import Money from "views/Money";
+import NoMatch from "views/NoMatch";
+import Statistics from "views/Statistics";
+import Tags from "views/Tags";
 
 function App() {
   return (
@@ -26,38 +28,6 @@ function App() {
         </Route>
       </Switch>
     </Router>
-  );
-}
-
-function Tags() {
-  return (
-    <Layout>
-      <h2>标签</h2>
-    </Layout>
-  );
-}
-
-function Money() {
-  return (
-    <Layout>
-      <h2>记一笔</h2>
-    </Layout>
-  );
-}
-
-function Statistics() {
-  return (
-    <Layout>
-      <h2>统计</h2>
-    </Layout>
-  );
-}
-
-function NoMatch() {
-  return (
-    <Layout navVisible="false">
-      <h2>404</h2>
-    </Layout>
   );
 }
 
