@@ -63,7 +63,18 @@ const Wrapper = styled.section`
 `;
 
 const NumberPanel = () => {
-  const [output, setOutput] = useState<string>("0");
+  const [output, _setOutput] = useState<string>("0");
+  const setOutput = (output: string) => {
+    if (output === "") {
+      _setOutput("0");
+    } else {
+      if (output.length >= 16) {
+        _setOutput(output.slice(0, 16));
+      } else {
+        _setOutput(output);
+      }
+    }
+  };
   const buttonsClick = (e: React.MouseEvent) => {
     const text = (e.target as HTMLButtonElement).textContent;
     if (text === null) return;
@@ -71,26 +82,26 @@ const NumberPanel = () => {
       if (output === "0") {
         setOutput(text);
       } else {
-        setOutput((o) => o + text);
+        setOutput(output + text);
       }
     }
     switch (text) {
       case ".":
         if (output.indexOf(".") === -1) {
-          setOutput((o) => o + text);
+          setOutput(output + text);
         }
         break;
       case "删除":
         if (output !== "0") {
           if (output.length === 1) {
-            setOutput("0");
+            setOutput("");
           } else {
-            setOutput((o) => o.slice(0, o.length - 1));
+            setOutput(output.slice(0, -1));
           }
         }
         break;
       case "清空":
-        setOutput("0");
+        setOutput("");
         break;
       case "OK":
         console.log("OK");
