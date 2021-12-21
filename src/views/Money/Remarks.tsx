@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { useState, useRef } from "react";
 
-const Remarks = styled.section`
+const Wrapper = styled.section`
   padding-left: 16px;
   background: #f5f5f5;
   > label {
@@ -20,5 +21,29 @@ const Remarks = styled.section`
     }
   }
 `;
+
+const Remarks = () => {
+  const [remarks, setRemarks] = useState<string>("");
+  const inputRef = useRef<HTMLInputElement>(null);
+  const onBlurHandle = () => {
+    if (inputRef.current !== null) {
+      setRemarks(inputRef.current.value);
+    }
+  };
+  return (
+    <Wrapper>
+      <label>
+        <span>备注</span>
+        <input
+          type="text"
+          placeholder="在这里添加备注"
+          defaultValue={remarks}
+          onBlur={onBlurHandle}
+          ref={inputRef}
+        />
+      </label>
+    </Wrapper>
+  );
+};
 
 export { Remarks };

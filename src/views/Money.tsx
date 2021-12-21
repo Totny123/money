@@ -14,12 +14,7 @@ function Money() {
   return (
     <MyLayout>
       <Tags />
-      <Remarks>
-        <label>
-          <span>备注</span>
-          <input placeholder="在这里添加备注" />
-        </label>
-      </Remarks>
+      <Remarks />
       <Types>
         <ul>
           <li className="selected">支出</li>
