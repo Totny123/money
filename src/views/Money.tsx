@@ -1,4 +1,5 @@
 import Layout from "components/Layout";
+import { useState } from "react";
 import styled from "styled-components";
 import { NumberPanel } from "./Money/NumberPanel";
 import { Remarks } from "./Money/Remarks";
@@ -11,12 +12,38 @@ const MyLayout = styled(Layout)`
 `;
 
 function Money() {
+  const [selected, setSelected] = useState({
+    tags: [] as string[],
+    remarks: "",
+    type: "-" as "-" | "+",
+    amount: 0,
+  });
   return (
     <MyLayout>
-      <Tags />
-      <Remarks />
-      <Types />
-      <NumberPanel />
+      <Tags
+        tags={selected.tags}
+        onChange={(selectedTags) => {
+          setSelected({ ...selected, tags: selectedTags });
+        }}
+      />
+      <Remarks
+        remarks={selected.remarks}
+        onChange={(newRemarks) => {
+          setSelected({ ...selected, remarks: newRemarks });
+        }}
+      />
+      <Types
+        type={selected.type}
+        onChange={(selectedType) => {
+          setSelected({ ...selected, type: selectedType });
+        }}
+      />
+      <NumberPanel
+        amount={selected.amount}
+        onChange={(newAmount) => {
+          setSelected({ ...selected, amount: newAmount });
+        }}
+      />
     </MyLayout>
   );
 }

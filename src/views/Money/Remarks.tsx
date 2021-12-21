@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 
 const Wrapper = styled.section`
   padding-left: 16px;
@@ -22,12 +22,17 @@ const Wrapper = styled.section`
   }
 `;
 
-const Remarks = () => {
-  const [remarks, setRemarks] = useState<string>("");
+type Props = {
+  remarks: string;
+  onChange: (remarks: string) => void;
+};
+
+const Remarks: React.FunctionComponent<Props> = (props) => {
+  const remarks = props.remarks;
   const inputRef = useRef<HTMLInputElement>(null);
   const onBlurHandle = () => {
     if (inputRef.current !== null) {
-      setRemarks(inputRef.current.value);
+      props.onChange(inputRef.current.value);
     }
   };
   return (

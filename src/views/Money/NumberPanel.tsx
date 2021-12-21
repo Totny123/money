@@ -1,19 +1,25 @@
-import { useState } from "react";
 import { Wrapper } from "./NumberPanel/Wrapper";
 import { generateOutput } from "./NumberPanel/generateOutput";
 
-const NumberPanel = () => {
-  const [output, _setOutput] = useState<string>("0");
+type Props = {
+  amount: number;
+  onChange: (amount: number) => void;
+};
+
+const NumberPanel: React.FunctionComponent<Props> = (props) => {
+  const output = props.amount.toString();
   const setOutput = (output: string) => {
+    let value;
     if (output === "") {
-      _setOutput("0");
+      value = 0;
     } else {
       if (output.length >= 16) {
-        _setOutput(output.slice(0, 16));
+        value = parseFloat(output.slice(0, 16));
       } else {
-        _setOutput(output);
+        value = parseFloat(output);
       }
     }
+    props.onChange(value);
   };
   const buttonsClick = (e: React.MouseEvent) => {
     const text = (e.target as HTMLButtonElement).textContent;

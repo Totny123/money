@@ -27,12 +27,17 @@ const Wrapper = styled.section`
   }
 `;
 
-const Types: React.FunctionComponent = () => {
+type Props = {
+  type: "-" | "+";
+  onChange: (type: "-" | "+") => void;
+};
+
+const Types: React.FunctionComponent<Props> = (props) => {
   const typesMap = { "-": "支出", "+": "收入" };
   type X = typeof typesMap; //X就是typesMap的类型声明。    {'-':string,'+':string}
   type Y = keyof X; //Y就是类型声明X中的key。    '-'|'y'
   const [typesList] = useState<Y[]>(["-", "+"]);
-  const [selected, setSelected] = useState("-");
+  const selected = props.type;
   return (
     <Wrapper>
       <ul>
@@ -41,7 +46,7 @@ const Types: React.FunctionComponent = () => {
             key={type}
             className={type === selected ? "selected" : ""}
             onClick={() => {
-              setSelected(type);
+              props.onChange(type);
             }}
           >
             {typesMap[type]}

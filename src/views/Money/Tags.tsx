@@ -32,10 +32,14 @@ const Wrapper = styled.section`
     border-bottom: 1px solid #666666;
   }
 `;
-
-const Tags: React.FunctionComponent = () => {
+type Props = {
+  tags: string[];
+  onChange: (tags: string[]) => void;
+};
+const Tags: React.FunctionComponent<Props> = (props) => {
   const [tags, setTags] = useState<string[]>(["衣", "食", "住", "行"]);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const selectedTags = props.tags;
+
   const onAddTag = () => {
     const tagName = window.prompt("请输入要添加的标签！");
     if (tagName !== null && tagName !== "") {
@@ -52,11 +56,9 @@ const Tags: React.FunctionComponent = () => {
     const isSelected = selectedTags.indexOf(tag) > -1;
     if (isSelected) {
       const notSelectedArr = selectedTags.filter((item) => item !== tag);
-      setSelectedTags(notSelectedArr);
+      props.onChange(notSelectedArr);
     } else {
-      setSelectedTags((t) => {
-        return [...t, tag];
-      });
+      props.onChange([...selectedTags, tag]);
     }
   };
   const getClass = (tag: string) =>
