@@ -15,12 +15,7 @@ function Money() {
     <MyLayout>
       <Tags />
       <Remarks />
-      <Types>
-        <ul>
-          <li className="selected">支出</li>
-          <li>收入</li>
-        </ul>
-      </Types>
+      <Types />
       <NumberPanel>
         <div className="output">100</div>
         <div className="number-buttons clearfix">
