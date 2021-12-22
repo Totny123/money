@@ -33,48 +33,44 @@ const Wrapper = styled.section`
   }
 `;
 type Props = {
-  tags: string[];
-  onChange: (tags: string[]) => void;
+  tagIds: number[];
+  onChange: (tags: number[]) => void;
 };
 const Tags: React.FunctionComponent<Props> = (props: Props) => {
   const { tags, setTags } = useTags();
-  const selectedTags = props.tags;
+  console.log(tags);
+  const selectedTagIds = props.tagIds;
 
   const onAddTag = () => {
     const tagName = window.prompt("请输入要添加的标签！");
     if (tagName !== null && tagName !== "") {
-      if (tags.indexOf(tagName) > -1) {
-        window.alert("已存在该标签");
-      } else {
-        setTags((t) => {
-          return [...t, tagName];
-        });
-      }
+      // TODO:
+      setTags([...tags, { id: 5, name: tagName }]);
     }
   };
-  const onToggleSelect = (tag: string) => {
-    const isSelected = selectedTags.indexOf(tag) > -1;
+  const onToggleSelect = (tagId: number) => {
+    const isSelected = selectedTagIds.indexOf(tagId) > -1;
     if (isSelected) {
-      const notSelectedArr = selectedTags.filter((item) => item !== tag);
+      const notSelectedArr = selectedTagIds.filter((item) => item !== tagId);
       props.onChange(notSelectedArr);
     } else {
-      props.onChange([...selectedTags, tag]);
+      props.onChange([...selectedTagIds, tagId]);
     }
   };
-  const getClass = (tag: string) =>
-    selectedTags.indexOf(tag) > -1 ? "selected" : "";
+  const getClass = (tagId: number) =>
+    selectedTagIds.indexOf(tagId) > -1 ? "selected" : "";
   return (
     <Wrapper>
       <ul>
         {tags.map((tag) => (
           <li
-            key={tag}
+            key={tag.id}
             onClick={() => {
-              onToggleSelect(tag);
+              onToggleSelect(tag.id);
             }}
-            className={getClass(tag)}
+            className={getClass(tag.id)}
           >
-            {tag}
+            {tag.name}
           </li>
         ))}
       </ul>
