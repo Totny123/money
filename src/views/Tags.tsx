@@ -1,3 +1,4 @@
+import { Button } from "components/Button";
 import Icon from "components/Icon";
 import Layout from "components/Layout";
 import { Link } from "react-router-dom";
@@ -18,14 +19,6 @@ function Tags() {
         border-bottom: 1px solid #bcbbc1;
       }
     }
-  `;
-  const Button = styled.button`
-    padding: 8px 13px;
-    font-size: 18px;
-    background: #767676;
-    border-radius: 4px;
-    border: none;
-    color: white;
   `;
   const Center = styled.div`
     display: flex;
