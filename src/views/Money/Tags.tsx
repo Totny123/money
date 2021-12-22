@@ -39,9 +39,7 @@ type Props = {
 };
 const Tags: React.FunctionComponent<Props> = (props: Props) => {
   const { tags, setTags } = useTags();
-  console.log(tags);
   const selectedTagIds = props.tagIds;
-
   const onAddTag = () => {
     const tagName = window.prompt("请输入要添加的标签！");
     if (tagName !== null && tagName !== "") {
