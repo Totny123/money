@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useTags } from "useTags";
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
@@ -37,7 +37,7 @@ type Props = {
   onChange: (tags: string[]) => void;
 };
 const Tags: React.FunctionComponent<Props> = (props: Props) => {
-  const [tags, setTags] = useState<string[]>(["衣", "食", "住", "行"]);
+  const { tags, setTags } = useTags();
   const selectedTags = props.tags;
 
   const onAddTag = () => {
