@@ -44,3 +44,9 @@ button {
   width: 1em;
   height: 1em;
 }
+
+.one-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
