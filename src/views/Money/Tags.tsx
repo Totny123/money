@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useTags } from "useTags";
+import { createId } from "lib/createId";
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
@@ -44,8 +45,7 @@ const Tags: React.FunctionComponent<Props> = (props: Props) => {
   const onAddTag = () => {
     const tagName = window.prompt("请输入要添加的标签！");
     if (tagName !== null && tagName !== "") {
-      // TODO:
-      setTags([...tags, { id: 5, name: tagName }]);
+      setTags([...tags, { id: createId(), name: tagName }]);
     }
   };
   const onToggleSelect = (tagId: number) => {
