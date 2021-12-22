@@ -36,7 +36,7 @@ type Props = {
   tags: string[];
   onChange: (tags: string[]) => void;
 };
-const Tags: React.FunctionComponent<Props> = (props) => {
+const Tags: React.FunctionComponent<Props> = (props: Props) => {
   const [tags, setTags] = useState<string[]>(["衣", "食", "住", "行"]);
   const selectedTags = props.tags;
 
