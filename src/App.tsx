@@ -4,6 +4,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+import { EditTag } from "views/EditTag";
 import Money from "views/Money";
 import NoMatch from "views/NoMatch";
 import Statistics from "views/Statistics";
@@ -14,13 +15,16 @@ function App() {
     <Router>
       <Switch>
         <Redirect exact from="/" to="/money" />
-        <Route path="/tags">
+        <Route exact path="/tags">
           <Tags />
         </Route>
-        <Route path="/money">
+        <Route exact path="/tags/:tag">
+          <EditTag />
+        </Route>
+        <Route exact path="/money">
           <Money />
         </Route>
-        <Route path="/statistics">
+        <Route exact path="/statistics">
           <Statistics />
         </Route>
         <Route path="*">
