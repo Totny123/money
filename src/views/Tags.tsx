@@ -5,7 +5,7 @@ import Layout from "components/Layout";
 import { Space } from "components/Space";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useTags } from "useTags";
+import { useTags } from "hooks/useTags";
 
 function Tags() {
   const TagsList = styled.ul`

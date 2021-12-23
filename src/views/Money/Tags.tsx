@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { useTags } from "useTags";
-import { createId } from "lib/createId";
+import { useTags } from "hooks/useTags";
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;

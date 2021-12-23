@@ -4,6 +4,7 @@ import { generateOutput } from "./NumberPanel/generateOutput";
 type Props = {
   amount: number;
   onChange: (amount: number) => void;
+  onOk: () => void;
 };
 
 const NumberPanel: React.FunctionComponent<Props> = (props) => {
@@ -25,7 +26,7 @@ const NumberPanel: React.FunctionComponent<Props> = (props) => {
     const text = (e.target as HTMLButtonElement).textContent;
     if (text === null) return;
     if (text === "OK") {
-      console.log("确定");
+      props.onOk();
       return;
     }
     setOutput(generateOutput(text, output));

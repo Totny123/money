@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useRef } from "react";
 import { Input } from "components/Input";
 
 const Wrapper = styled.section`
@@ -7,7 +6,7 @@ const Wrapper = styled.section`
   background: #f5f5f5;
 `;
 const InputWrapper = styled.div`
-  padding:15px 0;
+  padding: 15px 0;
 `;
 type Props = {
   remarks: string;
@@ -16,12 +15,9 @@ type Props = {
 
 const Remarks: React.FunctionComponent<Props> = (props) => {
   const remarks = props.remarks;
-  const inputRef = useRef<HTMLInputElement>(null);
   //声明onChangeHandle函数类型是接受HTMLInputElement的React.ChangeEventHandler函数。
   const onChangeHandle: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    if (e.target.value) {
-      props.onChange(e.target.value);
-    }
+    props.onChange(e.target.value);
   };
   return (
     <Wrapper>

@@ -5,21 +5,31 @@ import { NumberPanel } from "./Money/NumberPanel";
 import { Remarks } from "./Money/Remarks";
 import { Tags } from "./Money/Tags";
 import { Types } from "./Money/Types";
+import { useRecords } from "hooks/useRecords";
 
 const MyLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
 `;
 
+const defaultSelected = {
+  tagIds: [] as number[],
+  remarks: "",
+  type: "-" as "-" | "+",
+  amount: 0,
+};
+
 function Money() {
-  const [selected, setSelected] = useState({
-    tagIds: [] as number[],
-    remarks: "",
-    type: "-" as "-" | "+",
-    amount: 0,
-  });
+  const { addRecord } = useRecords();
+  const [selected, setSelected] = useState(defaultSelected);
   const onChange = (obj: Partial<typeof selected>) => {
     setSelected({ ...selected, ...obj });
+  };
+  const onOkHandler = () => {
+    if (addRecord(selected)) {
+      alert("添加成功！");
+      setSelected(defaultSelected);
+    }
   };
 
   return (
@@ -47,6 +57,7 @@ function Money() {
         onChange={(amount) => {
           onChange({ amount });
         }}
+        onOk={onOkHandler}
       />
     </MyLayout>
   );
