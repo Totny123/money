@@ -26,9 +26,13 @@ const InputWrapper = styled.div`
 
 const EditTag: React.FunctionComponent = () => {
   const { tagId } = useParams<Params>();
-  const { findTag } = useTags();
+  const { findTag, updateTag } = useTags();
   const tag = findTag(tagId);
-  const onChangeHandle = () => {};
+  const onChangeHandle: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    if (tag) {
+      updateTag(tag.id, e.target.value);
+    }
+  };
   return (
     <Layout>
       <Header>
