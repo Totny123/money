@@ -19,6 +19,10 @@ const defaultSelected = {
   amount: 0,
 };
 
+const TypesWrapper = styled.div`
+  background: #c4c4c4;
+`;
+
 function Money() {
   const { addRecord } = useRecords();
   const [selected, setSelected] = useState(defaultSelected);
@@ -46,12 +50,15 @@ function Money() {
           onChange({ remarks });
         }}
       />
-      <Types
-        type={selected.type}
-        onChange={(type) => {
-          onChange({ type });
-        }}
-      />
+      <TypesWrapper>
+        <Types
+          type={selected.type}
+          onChange={(type) => {
+            onChange({ type });
+          }}
+        />
+      </TypesWrapper>
+
       <NumberPanel
         amount={selected.amount}
         onChange={(amount) => {

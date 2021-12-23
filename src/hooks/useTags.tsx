@@ -27,6 +27,10 @@ const useTags = () => {
       setTags([...tags, { id: createId(), name: tagName }]);
     }
   };
+  const getName = (id: number) => {
+    const tag = tags.find((t) => t.id === id);
+    return tag ? tag.name : "";
+  };
 
   useEffect(() => {
     let localTags = JSON.parse(window.localStorage.getItem("tags") || "[]");
@@ -44,6 +48,15 @@ const useTags = () => {
     window.localStorage.setItem("tags", JSON.stringify(tags));
   }, [tags]);
 
-  return { tags, setTags, findTag, findIndex, updateTag, deleteTag, addTag };
+  return {
+    tags,
+    getName,
+    setTags,
+    findTag,
+    findIndex,
+    updateTag,
+    deleteTag,
+    addTag,
+  };
 };
 export { useTags };
