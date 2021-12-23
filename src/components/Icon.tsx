@@ -1,3 +1,5 @@
+import classnames from "classnames";
+
 //导入icons目录下的所有svg。webpack知识。
 let importAll = (requireContext: __WebpackModuleApi.RequireContext) =>
   requireContext.keys().forEach(requireContext);
@@ -9,11 +11,12 @@ try {
 
 type Props = {
   name?: string;
-};
+} & React.SVGAttributes<SVGSVGElement>;
 function Icon(props: Props) {
+  const { name, children, className, ...rest } = props;
   return (
-    <svg className="icon">
-      {props.name && <use xlinkHref={`#${props.name}`}></use>}
+    <svg className={classnames("icon", className)} {...rest}>
+      {name && <use xlinkHref={`#${name}`}></use>}
     </svg>
   );
 }

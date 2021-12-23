@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useTags } from "useTags";
 import Layout from "components/Layout";
 import Icon from "components/Icon";
@@ -8,7 +8,6 @@ import { Input } from "components/Input";
 import { Center } from "components/Center";
 import { Space } from "components/Space";
 type Params = { tagId: string };
-
 const Header = styled.header`
   display: flex;
   align-items: center;
@@ -48,10 +47,14 @@ const EditTag: React.FunctionComponent = () => {
       />
     </InputWrapper>
   );
+  const history = useHistory();
+  const onClickBack = () => {
+    history.goBack();
+  };
   return (
     <Layout>
       <Header>
-        <Icon name="left" />
+        <Icon name="left" onClick={onClickBack} />
         <span>编辑标签</span>
         <Icon />
       </Header>
