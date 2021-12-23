@@ -38,14 +38,9 @@ type Props = {
   onChange: (tags: number[]) => void;
 };
 const Tags: React.FunctionComponent<Props> = (props: Props) => {
-  const { tags, setTags } = useTags();
+  const { tags, addTag } = useTags();
   const selectedTagIds = props.tagIds;
-  const onAddTag = () => {
-    const tagName = window.prompt("请输入要添加的标签！");
-    if (tagName !== null && tagName !== "") {
-      setTags([...tags, { id: createId(), name: tagName }]);
-    }
-  };
+
   const onToggleSelect = (tagId: number) => {
     const isSelected = selectedTagIds.indexOf(tagId) > -1;
     if (isSelected) {
@@ -72,7 +67,7 @@ const Tags: React.FunctionComponent<Props> = (props: Props) => {
           </li>
         ))}
       </ul>
-      <button onClick={onAddTag}>新增标签</button>
+      <button onClick={addTag}>新增标签</button>
     </Wrapper>
   );
 };

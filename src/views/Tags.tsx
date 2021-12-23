@@ -23,7 +23,7 @@ function Tags() {
     }
   `;
 
-  const { tags } = useTags();
+  const { tags, addTag } = useTags();
   return (
     <Layout>
       <TagsList>
@@ -38,7 +38,7 @@ function Tags() {
       </TagsList>
       <Center>
         <Space />
-        <Button>新建标签</Button>
+        <Button onClick={addTag}>新建标签</Button>
       </Center>
     </Layout>
   );
