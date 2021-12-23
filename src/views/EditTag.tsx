@@ -26,13 +26,28 @@ const InputWrapper = styled.div`
 
 const EditTag: React.FunctionComponent = () => {
   const { tagId } = useParams<Params>();
-  const { findTag, updateTag } = useTags();
+  const { findTag, updateTag, deleteTag } = useTags();
   const tag = findTag(tagId);
   const onChangeHandle: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     if (tag) {
       updateTag(tag.id, e.target.value);
     }
   };
+  const onClickHandle = () => {
+    if (tag) {
+      deleteTag(tag.id);
+    }
+  };
+  const tagContent = (tag: { id: number; name: string }) => (
+    <InputWrapper>
+      <Input
+        type="text"
+        label="标签名"
+        value={tag.name}
+        onChange={onChangeHandle}
+      />
+    </InputWrapper>
+  );
   return (
     <Layout>
       <Header>
@@ -40,17 +55,10 @@ const EditTag: React.FunctionComponent = () => {
         <span>编辑标签</span>
         <Icon />
       </Header>
-      <InputWrapper>
-        <Input
-          type="text"
-          label="标签名"
-          value={tag?.name}
-          onChange={onChangeHandle}
-        />
-      </InputWrapper>
+      {tag ? tagContent(tag) : <div>没有该标签。</div>}
       <Center>
         <Space />
-        <Button>删除标签</Button>
+        <Button onClick={onClickHandle}>删除标签</Button>
       </Center>
     </Layout>
   );
