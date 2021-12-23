@@ -22,16 +22,10 @@ const useTags = () => {
     return -1;
   };
   const updateTag = (id: number, name: string) => {
-    const index = findIndex(id);
-    const newTags = JSON.parse(JSON.stringify(tags));
-    newTags.splice(index, 1, { id, name });
-    setTags(newTags);
+    setTags(tags.map((tag) => (tag.id === id ? { id, name } : tag)));
   };
   const deleteTag = (id: number) => {
-    const index = findIndex(id);
-    const newTags = JSON.parse(JSON.stringify(tags));
-    newTags.splice(index, 1);
-    setTags(newTags);
+    setTags(tags.filter((tag) => tag.id !== id));
   };
   return { tags, setTags, findTag, findIndex, updateTag, deleteTag };
 };
