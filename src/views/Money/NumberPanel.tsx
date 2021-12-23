@@ -1,5 +1,6 @@
 import { Wrapper } from "./NumberPanel/Wrapper";
 import { generateOutput } from "./NumberPanel/generateOutput";
+import { useState } from "react";
 
 type Props = {
   amount: number;
@@ -8,19 +9,20 @@ type Props = {
 };
 
 const NumberPanel: React.FunctionComponent<Props> = (props) => {
-  const output = props.amount.toString();
+  const [output, _setOutput] = useState(props.amount.toString());
   const setOutput = (output: string) => {
-    let value;
+    let newValue: string;
     if (output === "") {
-      value = 0;
+      newValue = "0";
     } else {
       if (output.length >= 16) {
-        value = parseFloat(output.slice(0, 16));
+        newValue = output.slice(0, 16);
       } else {
-        value = parseFloat(output);
+        newValue = output;
       }
     }
-    props.onChange(value);
+    _setOutput(newValue);
+    props.onChange(parseFloat(newValue));
   };
   const buttonsClick = (e: React.MouseEvent) => {
     const text = (e.target as HTMLButtonElement).textContent;
