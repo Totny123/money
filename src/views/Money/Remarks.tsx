@@ -1,27 +1,14 @@
 import styled from "styled-components";
 import { useRef } from "react";
+import { Input } from "components/Input";
 
 const Wrapper = styled.section`
   padding-left: 16px;
   background: #f5f5f5;
-  > label {
-    display: flex;
-    align-items: center;
-    > span {
-      font-size: 14px;
-      white-space: nowrap;
-    }
-    > input {
-      margin-left: 16px;
-      padding: 0 2px;
-      width: 100%;
-      height: 73px;
-      border: none;
-      background: none;
-    }
-  }
 `;
-
+const InputWrapper = styled.div`
+  padding:15px 0;
+`;
 type Props = {
   remarks: string;
   onChange: (remarks: string) => void;
@@ -30,23 +17,23 @@ type Props = {
 const Remarks: React.FunctionComponent<Props> = (props) => {
   const remarks = props.remarks;
   const inputRef = useRef<HTMLInputElement>(null);
-  const onBlurHandle = () => {
-    if (inputRef.current !== null) {
-      props.onChange(inputRef.current.value);
+  //声明onChangeHandle函数类型是接受HTMLInputElement的React.ChangeEventHandler函数。
+  const onChangeHandle: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    if (e.target.value) {
+      props.onChange(e.target.value);
     }
   };
   return (
     <Wrapper>
-      <label>
-        <span>备注</span>
-        <input
+      <InputWrapper>
+        <Input
           type="text"
+          label="备注"
           placeholder="在这里添加备注"
-          defaultValue={remarks}
-          onBlur={onBlurHandle}
-          ref={inputRef}
+          value={remarks}
+          onChange={onChangeHandle}
         />
-      </label>
+      </InputWrapper>
     </Wrapper>
   );
 };

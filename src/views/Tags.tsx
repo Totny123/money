@@ -1,6 +1,8 @@
 import { Button } from "components/Button";
+import { Center } from "components/Center";
 import Icon from "components/Icon";
 import Layout from "components/Layout";
+import { Space } from "components/Space";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useTags } from "useTags";
@@ -20,15 +22,7 @@ function Tags() {
       }
     }
   `;
-  const Center = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  `;
-  const Space = styled.div`
-    height: 44px;
-  `;
+
   const { tags } = useTags();
   return (
     <Layout>
